@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-6">
+        <a routerLink="/" class="btn btn-link">
+            <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
+        </a>
+    </div>
+    <div class="col-md-6">
+        <div class="btn-group pull-right">
+            <a routerLink="/client/edit/{{clientId}}" class="btn btn-dark">Edit</a>
+            <button class="btn btn-danger" (click)="onDeleteClick()">Delete</button>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="card" *ngIf="client">
+    <div class="card-header">{{client.firstName}} {{client.lastName}}</div>
+    <div class="card-body justify-content">
+        <div class="row">
+            <div class="col-md-8 col-sm-6">
+                <h4>Client Id {{clientId}}</h4>
+            </div>
+            <div class="col-md-8 col-sm-6">
+                <h3 class="pull-right">
+                    Balance
+                    <span [class.text-danger]="hasBalance" [class.text-success]="!hasBalance">{{client.balance | currency:"₹": "symbol"}}</span>
+                    <a href="#" (click)="showBalanceUpdate = !showBalanceUpdate">
+                        <i class="fa fa-pencil ml-1"></i>
+                    </a>
+                </h3>
+                <div class="clearfix">
+                    <form *ngIf="showBalanceUpdate" (ngSubmit)="updateBalance(client)">
+                        <div class="input-group">
+                            <input type="text" name="balance" [(ngModel)]="client.balance">
+                            <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary ">Update</button>
+                      </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <ul class="list-group">
+            <li class="list-group-item">
+                Contact Email: {{client.email}}
+            </li>
+            <li class="list-group-item">
+                Contact Phone: {{client.phone}}
+            </li>
+        </ul>
+    </div>
+</div>
