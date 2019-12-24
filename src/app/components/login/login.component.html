@@ -1,3 +1,25 @@
-<p>
-  login works!
-</p>
+<div class="row">
+    <div class="col-md-6 mx-auto">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="text-center pb-4 pt-3">
+                    <i class="fa fa-lock"></i> Client Pannel Login
+                </h1>
+                <form #loginForm="ngForm" (ngSubmit)="onLoginSubmit(loginForm)">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input class="form-control" type="text" id="email" name="email" [(ngModel)]="email" #clientEmail="ngModel" required minlength="2" [ngClass]="{'is-invalid': clientEmail.errors && clientEmail.touched}" pattern="\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+                        <div class="invalid-feedback" [hidden]="!clientEmail.errors?.required">Required</div>
+                        <div class="invalid-feedback" [hidden]="!clientEmail.errors?.pattern">use a valid email.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="text" id="password" name="password" class="form-control" [(ngModel)]="password" #clientPassword="ngModel" [ngClass]="{'is-invalid': clientPassword.errors && clientPassword.touched}" required minlength="4">
+                    </div>
+                    <input type="submit" class="btn btn-primary btn-block" value="Login" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

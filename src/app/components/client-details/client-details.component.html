@@ -7,7 +7,7 @@
     <div class="col-md-6">
         <div class="btn-group pull-right">
             <a routerLink="/client/edit/{{clientId}}" class="btn btn-dark">Edit</a>
-            <button class="btn btn-danger" (click)="onDeleteClick()">Delete</button>
+            <button class="btn btn-danger" (click)="onDeleteClient(clientId)">Delete</button>
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
                 <h3 class="pull-right">
                     Balance
                     <span [class.text-danger]="hasBalance" [class.text-success]="!hasBalance">{{client.balance | currency:"₹": "symbol"}}</span>
-                    <a href="#" (click)="showBalanceUpdate = !showBalanceUpdate">
+                    <a [ngStyle]="{cursor:'pointer'}" (click)="showBalanceUpdate =!showBalanceUpdate">
                         <i class="fa fa-pencil ml-1"></i>
                     </a>
                 </h3>

@@ -3,7 +3,7 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router } from '@angular/router';
 
 import {Client} from '../../models/Client';
-import {ClientService} from '../../services/client.service';
+import {ClientService} from '../../services/client.service';  
 @Component({
   selector: 'app-add-client',
   templateUrl: './add-client.component.html',
@@ -29,7 +29,6 @@ export class AddClientComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit({value, valid}: {value:Client, valid:boolean}){
-    console.log('Form', this.form)
     if(this.disabledBalanceOnSave){
       value.balance = 0;
     }
