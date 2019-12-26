@@ -24,4 +24,14 @@ export class AuthService  {
   onLogout(){
     this.afAuth.auth.signOut();
   }
+  onRegister(email, password){
+    return new  Promise((resolve, reject) => {
+      this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then(userInfo => {
+          return resolve(userInfo);
+        })
+        .catch(error => reject(error));
+        
+    });
+  }
 }

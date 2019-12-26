@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {ClientService} from '../../services/client.service';
+import {SettingService} from '../../services/settings.service';
 import {Client} from '../../models/Client';
 
 @Component({
@@ -11,7 +12,7 @@ import {Client} from '../../models/Client';
 })
 export class EditClientComponent implements OnInit {
   clientId: string;
-  showBalanceUpdate:boolean = false;
+  disableBalance:boolean;
   client:Client = {
     firstName: '',
     lastName:'',
@@ -24,10 +25,11 @@ export class EditClientComponent implements OnInit {
     private route: ActivatedRoute,
     private clientService: ClientService,
     private flashMessage: FlashMessagesService,
-    private router:Router
+    private router:Router,
+    private settingService: SettingService
   ) {
     this.clientId = this.route.snapshot.params['id'];
-
+    this.disableBalance = this.settingService.getSettings().disableBalanceOnEdit;
    }
 
   ngOnInit() {

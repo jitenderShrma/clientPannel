@@ -3,7 +3,8 @@ import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router } from '@angular/router';
 
 import {Client} from '../../models/Client';
-import {ClientService} from '../../services/client.service';  
+import {ClientService} from '../../services/client.service';
+import {SettingService} from '../../services/settings.service';  
 @Component({
   selector: 'app-add-client',
   templateUrl: './add-client.component.html',
@@ -19,12 +20,18 @@ export class AddClientComponent implements OnInit {
   }
   @ViewChild('clientForm', {static:false}) form: any;
   
-  disabledBalanceOnSave: boolean = true;
+  disabledBalanceOnSave: boolean;
   constructor(
     private flashMessage:FlashMessagesService,
     private clientService:ClientService,
-    private router:Router
-    ) {}
+    private router:Router,
+    private settingService: SettingService
+    ) {
+      this.disabledBalanceOnSave = this.settingService.getSettings().disableBalanceOnSave;
+      setTimeout(() => {
+        console.log('disabledBalanceOnSave', this.disabledBalanceOnSave)
+      }, 2000);
+    }
 
   ngOnInit() {
   }

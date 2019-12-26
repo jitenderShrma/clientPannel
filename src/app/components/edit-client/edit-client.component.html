@@ -60,7 +60,7 @@
 
             <div class="form-group">
                 <label for="balance">Balance</label>
-                <input id="balance" type="text" class="form-control" name="balance" [(ngModel)]="client.balance" #clientBalance="ngModel" required minlength="2" [ngClass]="{'is-invalid': clientBalance.errors && clientBalance.touched}" id="balance" [attr.disabled]="showBalanceUpdate">
+                <input id="balance" type="text" class="form-control" name="balance" [(ngModel)]="client.balance" #clientBalance="ngModel" required minlength="2" [ngClass]="{'is-invalid': clientBalance.errors && clientBalance.touched}" id="balance" [disabled]="disableBalance">
                 <div class="invalid-feedback" [hidden]="!clientBalance.errors?.required">
                     Required
                 </div>
